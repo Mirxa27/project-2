@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getBookings, updateBooking, cancelBooking } from '../../services/bookingService';
+import { bookingService } from '../../services/bookingService';
 
 const BookingManagement = () => {
   const [bookings, setBookings] = useState([]);
@@ -10,7 +10,7 @@ const BookingManagement = () => {
 
   const fetchBookings = async () => {
     try {
-      const fetchedBookings = await getBookings('currentUserId'); // Replace with actual user ID
+      const fetchedBookings = await bookingService.getBookings('currentUserId'); // Replace with actual user ID
       setBookings(fetchedBookings);
     } catch (error) {
       console.error('Error fetching bookings:', error);
@@ -19,7 +19,7 @@ const BookingManagement = () => {
 
   const handleStatusChange = async (id: string, newStatus: string) => {
     try {
-      await updateBooking(id, { status: newStatus });
+      await bookingService.updateBooking(id, { status: newStatus });
       fetchBookings();
     } catch (error) {
       console.error('Error updating booking status:', error);
@@ -29,7 +29,7 @@ const BookingManagement = () => {
   const handleCancelBooking = async (id: string) => {
     if (window.confirm('Are you sure you want to cancel this booking?')) {
       try {
-        await cancelBooking(id);
+        await bookingService.cancelBooking(id);
         fetchBookings();
       } catch (error) {
         console.error('Error canceling booking:', error);
