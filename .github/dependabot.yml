@@ -1,0 +1,31 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    # Look for `package.json` and `lock` files in the root directory
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Add assignees
+    assignees:
+      - "Mirxa27"
+    # Specify labels for pull requests
+    labels:
+      - "dependencies"
+      - "npm"
+    # Set version update strategy
+    versioning-strategy: auto
+    # Allow up to 10 open pull requests for dependencies
+    open-pull-requests-limit: 10
+
+  # Enable version updates for npm in the server directory
+  - package-ecosystem: "npm"
+    directory: "/server"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "npm"
+      - "server"
+    versioning-strategy: auto
+    open-pull-requests-limit: 10
