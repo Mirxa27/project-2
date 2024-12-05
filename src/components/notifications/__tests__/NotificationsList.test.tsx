@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { NotificationsList } from '../NotificationsList';
 import { notificationService } from '../../../services/notifications';
-import { vi } from 'vitest';
+import { beforeEach, expect, vi } from 'vitest';
 
 // Mock the notification service
 vi.mock('../../../services/notifications', () => ({
@@ -13,8 +13,13 @@ vi.mock('../../../services/notifications', () => ({
     markAllAsRead: vi.fn(),
   },
 }));
-
+/**
+ * describe
+ */
 describe('NotificationsList', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { PropertyGrid } from '../properties/PropertyGrid';
 import { Card, CardContent } from '../ui/Card';

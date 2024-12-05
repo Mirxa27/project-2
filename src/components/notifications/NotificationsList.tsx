@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Bell, Check, Trash2 } from 'lucide-react';
 import { Button } from '../ui/Button';
@@ -38,7 +37,11 @@ export function NotificationsList() {
   if (isLoading) {
     return (
       <Card className="p-4">
-        <div className="flex items-center justify-center py-8">
+        <div 
+          className="flex items-center justify-center py-8"
+          role="status"
+          aria-label="Loading notifications"
+        >
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
         </div>
       </Card>
@@ -90,6 +93,7 @@ export function NotificationsList() {
                     size="icon"
                     onClick={() => markAsReadMutation.mutate(notification.id)}
                     disabled={markAsReadMutation.isPending}
+                    aria-label="Mark notification as read"
                   >
                     <Check className="h-4 w-4" />
                   </Button>
@@ -99,6 +103,7 @@ export function NotificationsList() {
                   size="icon"
                   onClick={() => deleteMutation.mutate(notification.id)}
                   disabled={deleteMutation.isPending}
+                  aria-label="Delete notification"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
